@@ -37,3 +37,18 @@ Entity Framework Core 6 Setup
 	c. ProcedureWithOutReturn
 		code
 		await _context.Database.ExecuteSqlRawAsync(StoredProc,new SqlParameter("@Name",input.Name));
+
+
+6. ProcedureWithResultSet; ProcedureWithOutReturn; sample Store Procedure run it in your DB;
+
+CREATE PROCEDURE ProcedureWithResultSet
+	@Id varchar(50)
+AS
+	SELECT Id,Name,'' Description FROM YourTable WHERE Id = @Id;
+RETURN 0
+
+CREATE PROCEDURE ProcedureWithOutReturn
+	@Name varchar(50)
+AS
+	insert into YourTable (Name) values (@Name);
+RETURN 0
